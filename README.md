@@ -74,6 +74,6 @@ python client/app.py
 - Ensure that the necessary ports for the LDAP server and the server-side component are open in your firewall to allow communication between the client and the server.
 - Set the server's IP address in the local network as the SERVER_IP variable in the client/app.py file to ensure proper connection from the client to the server.
 - Ensure the security of your infrastructure, including authentication, encryption, and protection against potential vulnerabilities.
-## License:
-
-This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+## License
+-------
+This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE.md). You can find the full text of the license [here](LICENSE.md).
