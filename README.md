@@ -76,4 +76,9 @@ python client/app.py
 - Ensure the security of your infrastructure, including authentication, encryption, and protection against potential vulnerabilities.
 ## License
 -------
-This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE.md). You can find the full text of the license [here](LICENSE.md).
+This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)]([LICENSE.md](https://github.com/anatoliiii/secure-clipboard-server/blob/main/LICENSE)). You can find the full text of the license [here]([LICENSE.md](https://github.com/anatoliiii/secure-clipboard-server/blob/main/LICENSE)).
+## Copyright
+
+© 2023 MOZGOLIKA
+
+Email: mozgolika@vk.com
