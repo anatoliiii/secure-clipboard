@@ -20,12 +20,13 @@ Start using Secure Clipboard Server today and experience a convenient and secure
 ## Project Structure:
 
 client: Python-based client-side component for interacting with the server, handling file uploads, and clipboard management.
-server: Python-based server-side component using the Flask framework, responsible for handling client requests, authentication, file upload, and clipboard management.
+server: Go-based server-side component responsible for handling client requests, authentication, file upload, and clipboard management.
 ldap: Configuration file example for connecting to the LDAP server.
 ## Requirements:
 
 Python 3.x
 Python libraries: Flask, requests, clipboard, ldap3
+Go 1.21+
 ## Installation and Setup:
 
 1. Clone the repository: 
@@ -43,11 +44,11 @@ pip install -r requirements.txt
 4. Configure the LDAP server connection in the ```ldap/ldap_config.py``` file.
 5. Open the necessary ports in your firewall for the LDAP server (usually port 389) and the server-side component (default port 5000).
 6. Set the server's IP address in the local network as the SERVER_IP variable in the client/app.py file.
-7. Start the server: 
+7. Start the server:
 ```
-python server/app.py
+SECURE_CLIPBOARD_USERS="demo=demo=Demo User" go run ./cmd/server
 ```
-8. Run the client application: 
+8. Run the client application:
 ```
 python client/app.py
 ```
