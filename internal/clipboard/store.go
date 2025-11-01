@@ -20,8 +20,8 @@ type Entry struct {
 
 // Store describes the behaviour that every clipboard persistence implementation must satisfy.
 type Store interface {
-	// Set updates the clipboard content for the specified owner.
-	Set(ctx context.Context, owner, content string) (Entry, error)
-	// Get returns the latest clipboard entry.
-	Get(ctx context.Context) (Entry, error)
+	// Set updates the clipboard content for the specified owner within the provided scope.
+	Set(ctx context.Context, scope, owner, content string) (Entry, error)
+	// Get returns the latest clipboard entry for the provided scope.
+	Get(ctx context.Context, scope string) (Entry, error)
 }

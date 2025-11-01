@@ -75,6 +75,15 @@ python client/app.py
 - Ensure that the necessary ports for the LDAP server and the server-side component are open in your firewall to allow communication between the client and the server.
 - Set the server's IP address in the local network as the SERVER_IP variable in the client/app.py file to ensure proper connection from the client to the server.
 - Ensure the security of your infrastructure, including authentication, encryption, and protection against potential vulnerabilities.
+
+## HTTP API
+
+The server exposes a REST API under `/api/v1/clipboard/text`. Both `GET` and `POST` requests accept an optional `scope` parameter that controls which clipboard namespace is accessed. The scope can be provided either as a query parameter (`/api/v1/clipboard/text?scope=local:device-a`) or via the `Scope` request header. When the scope is omitted the server falls back to the shared clipboard (`scope=shared`).
+
+- `GET /api/v1/clipboard/text` – returns the latest clipboard entry within the chosen scope. Responds with `404 Not Found` when the scope does not contain any data.
+- `POST /api/v1/clipboard/text` – updates the clipboard content for the authenticated user within the chosen scope. The request body must contain JSON with the `content` field.
+
+Scopes allow devices to keep local clipboards isolated while still sharing a global clipboard via the default `shared` scope.
 ## License
 -------
 This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)]([LICENSE.md](https://github.com/anatoliiii/secure-clipboard-server/blob/main/LICENSE)). You can find the full text of the license [here]([LICENSE.md](https://github.com/anatoliiii/secure-clipboard-server/blob/main/LICENSE)).

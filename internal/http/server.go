@@ -58,7 +58,9 @@ func (s *Server) handleTextClipboard(w stdhttp.ResponseWriter, r *stdhttp.Reques
 }
 
 func (s *Server) getTextClipboard(w stdhttp.ResponseWriter, r *stdhttp.Request) {
-	entry, err := s.store.Get(r.Context())
+	scope := scopeFromRequest(r)
+
+	entry, err := s.store.Get(r.Context(), scope)
 	if err != nil {
 		if err == clipboard.ErrEmpty {
 			stdhttp.Error(w, "clipboard is empty", stdhttp.StatusNotFound)
@@ -85,7 +87,9 @@ func (s *Server) postTextClipboard(w stdhttp.ResponseWriter, r *stdhttp.Request,
 		return
 	}
 
-	entry, err := s.store.Set(r.Context(), user.Username, payload.Content)
+	scope := scopeFromRequest(r)
+
+	entry, err := s.store.Set(r.Context(), scope, user.Username, payload.Content)
 	if err != nil {
 		stdhttp.Error(w, "unable to update clipboard", stdhttp.StatusInternalServerError)
 		return
@@ -126,7 +130,7 @@ func (s *Server) withCORS(next stdhttp.Handler) stdhttp.Handler {
 		}
 		if r.Method == stdhttp.MethodOptions {
 			w.Header().Set("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
-			w.Header().Set("Access-Control-Allow-Headers", "Authorization,Content-Type")
+			w.Header().Set("Access-Control-Allow-Headers", "Authorization,Content-Type,Scope")
 			w.WriteHeader(stdhttp.StatusNoContent)
 			return
 		}
@@ -150,4 +154,15 @@ func respondJSON(w stdhttp.ResponseWriter, status int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	_ = json.NewEncoder(w).Encode(payload)
+}
+
+func scopeFromRequest(r *stdhttp.Request) string {
+	scope := strings.TrimSpace(r.URL.Query().Get("scope"))
+	if scope == "" {
+		scope = strings.TrimSpace(r.Header.Get("Scope"))
+	}
+	if scope == "" {
+		return clipboard.DefaultScope
+	}
+	return scope
 }
