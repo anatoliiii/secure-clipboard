@@ -63,7 +63,8 @@ curl -u alice:secret \
      http://localhost:8080/api/v1/clipboard/text
 ```
 
-## Дальнейшее развитие
+For an overview of future milestones and technical decisions, see the [project roadmap](docs/roadmap.md).
+
 
 - Добавление постоянного хранилища (Redis/SQLite) для доступа к истории буфера.
 - Поддержка бинарных данных и файловых вложений.
