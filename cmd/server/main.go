@@ -20,7 +20,7 @@ func main() {
 	)
 	flag.Parse()
 
-	store := clipboard.NewInMemoryStore()
+	store := clipboard.NewScopedStore()
 
 	credentials := readCredentials()
 	authenticator, err := auth.NewStaticAuthenticator(credentials)
