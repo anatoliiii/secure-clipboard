@@ -16,6 +16,8 @@ With Secure Clipboard Server, you can rest assured that your clipboard content i
 
 Start using Secure Clipboard Server today and experience a convenient and secure solution for clipboard data exchange.:+1::lock::clipboard::computer:
 
+For an overview of future milestones and technical decisions, see the [project roadmap](docs/roadmap.md).
+
 
 ## Project Structure:
 
